@@ -17,7 +17,7 @@ public class CDR extends BaseReadOnlyFileStorage<AudioFile> implements ReadWrite
 
     @Override
     public void write(AudioFile file) throws FileWriteDeniedException {
-        if (!files.isEmpty() | tracksLengthLeft - file.getTrackLength() < 0) {
+        if (tracksLengthLeft - file.getTrackLength() < 0) {
             throw new FileWriteDeniedException();
         }
 
@@ -27,10 +27,6 @@ public class CDR extends BaseReadOnlyFileStorage<AudioFile> implements ReadWrite
 
     @Override
     public void write(Collection<AudioFile> audioFiles) throws FileWriteDeniedException {
-        if (!files.isEmpty()) {
-            throw new FileWriteDeniedException();
-        }
-
         Optional<Integer> lengthOfTracks = audioFiles.stream().map(AudioFile::getTrackLength).reduce(Integer::sum);
         if (lengthOfTracks.isPresent()) {
             if (tracksLengthLeft - lengthOfTracks.get() < 0) {

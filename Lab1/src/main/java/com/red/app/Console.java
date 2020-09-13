@@ -1,5 +1,6 @@
 package com.red.app;
 
+
 import java.util.Scanner;
 
 public class Console {
@@ -10,7 +11,7 @@ public class Console {
     }
 
     public static void printQuestion(String question) {
-        System.out.printf("%s: %n", question);
+        System.out.printf("%s: ", question);
     }
 
     public static Integer read(String question) {
@@ -19,6 +20,7 @@ public class Console {
         if (scanner.hasNextInt()) {
             Integer value = scanner.nextInt();
             scanner.nextLine();
+            System.out.println();
             return value;
         }
 

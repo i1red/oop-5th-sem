@@ -47,7 +47,7 @@ public class RandomGenerator {
         return null;
     }
 
-    private static ArrayList<AudioFile> genSongs() {
+    public static ArrayList<AudioFile> genSongs() {
         var result = new ArrayList<AudioFile>();
         var indices = new HashSet<Integer>();
 
@@ -60,5 +60,9 @@ public class RandomGenerator {
         }
 
         return result;
+    }
+
+    public static AudioFile randomSong(Genre genre, int trackLength) {
+        return new BaseAudioFile(String.format("%s_%d", genre, trackLength), genre, trackLength * 100, trackLength);
     }
 }
