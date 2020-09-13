@@ -1,7 +1,6 @@
 package com.red.app;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Menu {
     private final ArrayList<Option> options = new ArrayList<Option>();
@@ -11,42 +10,42 @@ public class Menu {
     }
 
     public void start() {
-        printMenu();
-        execOption();
+        printOptions();
+        loop();
     }
 
-    private int read() {
-        var scanner = new Scanner(System.in);
-        return scanner.nextInt();
+    private void loop() {
+        Integer optionNo = null;
+
+        while (true) {
+            optionNo = Console.read("Select option");
+
+            if (optionNo != null) {
+                if (optionNo < -2 | optionNo >= options.size()) {
+                    Console.printInfo("Invalid option");
+                    continue;
+                }
+
+                if (optionNo == -2) {
+                    Console.close();
+                    break;
+                }
+
+                if (optionNo == -1) {
+                    printOptions();
+                }
+                else {
+                    options.get(optionNo).execute();
+                }
+            }
+        }
     }
 
-    private void execOption() {
-        int optionNo = read();
-        if (optionNo < -2 | optionNo >= options.size()) {
-            System.out.println("Invalid option");
-            execOption();
-            return;
-        }
-
-        if (optionNo == -2) {
-            return;
-        }
-
-        if (optionNo == -1) {
-            System.out.println("opt -1");
-        }
-        else {
-            options.get(optionNo).execute();
-        }
-
-        execOption();
-    }
-
-    private void printMenu() {
-        System.out.printf("%d - %s%n", -2, "exit");
-        System.out.printf("%d - %s%n", -1, "clear");
+    private void printOptions() {
+        Console.printInfo(String.format("%d - %s", -2, "exit"));
+        Console.printInfo(String.format("%d - %s", -1, "print options"));
         for (int i = 0; i < options.size(); ++i) {
-            System.out.printf("%d - %s%n", i, options.get(i).getName());
+            Console.printInfo(String.format("%d - %s", i, options.get(i).getName()));
         }
     }
 }

@@ -4,16 +4,16 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Option {
-    private String name;
-    private Supplier<Void> func;
+    private final String name;
+    private final Runnable func;
 
-    public Option(String name, Supplier<Void> func) {
+    public Option(String name, Runnable func) {
         this.name = name;
         this.func = func;
     }
 
     public void execute() {
-        func.get();
+        func.run();
     }
 
     public String getName() {

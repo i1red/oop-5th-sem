@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.red'
@@ -12,3 +13,10 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+//noinspection GroovyAssignabilityCheck
+run {
+    standardInput = System.in
+}
+
+mainClassName = 'com.red.app.App'
