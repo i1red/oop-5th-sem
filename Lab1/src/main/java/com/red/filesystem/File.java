@@ -1,6 +1,6 @@
 package com.red.filesystem;
 
 public interface File {
-    public String getName();
-    public int getSize();
+    String getName();
+    int getSize();
 }

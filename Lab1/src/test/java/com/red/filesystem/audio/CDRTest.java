@@ -1,6 +1,6 @@
 package com.red.filesystem.audio;
 
-import com.red.demo.RandomGenerator;
+import com.red.demo.Generator;
 import com.red.filesystem.errors.FileWriteDeniedException;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ public class CDRTest {
     @Test
     public void testWrite_passSingleFile_succeeds() throws FileWriteDeniedException {
         var disc = new CDR(300);
-        AudioFile song = RandomGenerator.randomSong(Genre.UNDEFINED, 120);
+        AudioFile song = Generator.randomSong(Genre.UNDEFINED, 120);
 
         disc.write(song);
 
@@ -22,8 +22,8 @@ public class CDRTest {
 
     @Test
     public void testWrite_passMultipleFiles_succeeds() throws FileWriteDeniedException {
-        var disc = new CDR(4800);
-        ArrayList<AudioFile> songs = RandomGenerator.genSongs();
+        var disc = new CDR();
+        ArrayList<AudioFile> songs = Generator.genSongs();
 
         disc.write(songs);
 
@@ -33,20 +33,20 @@ public class CDRTest {
     @Test(expected = FileWriteDeniedException.class)
     public void testWrite_passSingleFile_throwsException() throws FileWriteDeniedException {
         var disc = new CDR(300);
-        AudioFile song = RandomGenerator.randomSong(Genre.UNDEFINED, 301);
+        AudioFile song = Generator.randomSong(Genre.UNDEFINED, 301);
         disc.write(song);
     }
 
     @Test
     public void testSort_succeeds() throws FileWriteDeniedException {
-        var disc = new CDR(4800);
+        var disc = new CDR();
         Genre[] genresExpected = { Genre.UNDEFINED, Genre.ROCK, Genre.RAP, Genre.POP, Genre.JAZZ, Genre.CLASSIC };
 
         var inputGenres = Arrays.asList(genresExpected.clone());
         Collections.shuffle(inputGenres);
 
         ArrayList<AudioFile> songs = inputGenres.stream().map(genre ->
-                RandomGenerator.randomSong(genre, 100)).collect(Collectors.toCollection(ArrayList::new));
+                Generator.randomSong(genre, 100)).collect(Collectors.toCollection(ArrayList::new));
 
         disc.write(songs);
         disc.sort(Comparator.comparing(AudioFile::getGenre));
@@ -56,7 +56,7 @@ public class CDRTest {
 
     @Test
     public void testFindFiles_succeeds() throws FileWriteDeniedException {
-        var disc = new CDR(4800);
+        var disc = new CDR();
 
         var random = new Random();
 
@@ -71,9 +71,9 @@ public class CDRTest {
         };
 
         ArrayList<AudioFile> songsUnexpected = Arrays.stream(lengthsUnexpected).mapToObj(length ->
-                RandomGenerator.randomSong(Genre.UNDEFINED, length)).collect(Collectors.toCollection(ArrayList::new));
+                Generator.randomSong(Genre.UNDEFINED, length)).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<AudioFile> songsExpected = Arrays.stream(lengthsExpected).mapToObj(length ->
-                RandomGenerator.randomSong(Genre.UNDEFINED, length)).collect(Collectors.toCollection(ArrayList::new));
+                Generator.randomSong(Genre.UNDEFINED, length)).collect(Collectors.toCollection(ArrayList::new));
 
         disc.write(songsUnexpected);
         disc.write(songsExpected);

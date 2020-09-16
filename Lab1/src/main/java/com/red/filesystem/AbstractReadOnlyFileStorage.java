@@ -2,11 +2,12 @@ package com.red.filesystem;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class BaseReadOnlyFileStorage<T extends File> implements ReadOnlyFileStorage<T> {
-    protected final ArrayList<T> files = new ArrayList<T>();
+public abstract class AbstractReadOnlyFileStorage<T extends File> implements ReadOnlyFileStorage<T> {
+    protected final List<T> files = new ArrayList<T>();
 
     @Override
     public ArrayList<T> readAll() {

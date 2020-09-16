@@ -1,6 +1,6 @@
 package com.red.app;
 
-import com.red.demo.RandomGenerator;
+import com.red.demo.Generator;
 import com.red.filesystem.ReadWriteFileStorage;
 import com.red.filesystem.audio.AudioFile;
 
@@ -16,11 +16,11 @@ public class App {
     }
 
     public static void main(String[] args) {
-        var disc = new AtomicReference<ReadWriteFileStorage<AudioFile>>(RandomGenerator.genDisc());
+        var disc = new AtomicReference<ReadWriteFileStorage<AudioFile>>(Generator.genDisc());
 
         var menu = new Menu();
 
-        menu.addOption(new Option("Regen disc", () -> disc.set(RandomGenerator.genDisc())));
+        menu.addOption(new Option("Regen disc", () -> disc.set(Generator.genDisc())));
 
         menu.addOption(new Option("Print songs", () -> {
             Console.printInfo(TABLE_COLUMNS);
