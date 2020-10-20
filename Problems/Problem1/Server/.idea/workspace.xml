@@ -23,37 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3be0ddae-d435-4ccd-99e9-639a2d89ff25" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Client/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/com/red/app/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/com/red/app/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/com/red/app/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/red/app/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/red/app/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/red/app/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,13 +98,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,6 +128,7 @@
       <workItem from="1600802727443" duration="37000" />
       <workItem from="1600802816534" duration="33000" />
       <workItem from="1600807086870" duration="7381000" />
+      <workItem from="1600846512022" duration="255000" />
     </task>
     <servers />
   </component>
@@ -178,22 +152,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="443" y="96" width="1024" height="839" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1600807110697" />
-    <state width="939" height="277" key="GridCell.Tab.0.bottom" timestamp="1600814745427">
+    <state width="901" height="275" key="GridCell.Tab.0.bottom" timestamp="1600846766641">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="939" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600814745427" />
-    <state width="939" height="277" key="GridCell.Tab.0.center" timestamp="1600814745424">
+    <state width="901" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600846766641" />
+    <state width="901" height="275" key="GridCell.Tab.0.center" timestamp="1600846766640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="939" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600814745424" />
-    <state width="939" height="277" key="GridCell.Tab.0.left" timestamp="1600814745423">
+    <state width="901" height="275" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600846766640" />
+    <state width="901" height="275" key="GridCell.Tab.0.left" timestamp="1600846766640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="939" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600814745423" />
-    <state width="939" height="277" key="GridCell.Tab.0.right" timestamp="1600814745426">
+    <state width="901" height="275" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600846766640" />
+    <state width="901" height="275" key="GridCell.Tab.0.right" timestamp="1600846766640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="939" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600814745426" />
+    <state width="901" height="275" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600846766640" />
     <state x="376" y="132" width="1157" height="767" key="new project wizard" timestamp="1600802846792">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
