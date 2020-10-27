@@ -1,20 +1,18 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class App {
+    private static final int MATRIX_SIZE = 1_000_000;
+
     public static void main(String[] args) {
-        AbstractTriDiagonalSystemSolver solver = new ParallelThomasSystemSolver();
+        AbstractTriDiagonalSystemSolver thomasSystemSolver = new ThomasSystemSolver();
+        AbstractTriDiagonalSystemSolver parallelThomasSystemSolver = new ParallelThomasSystemSolver();
 
-        List<Double> upper = Utils.generateRandomList(8);
-        List<Double> central = Utils.generateRandomList(9);
-        List<Double> lower = Utils.generateRandomList(8);
-        List<Double> constant = Utils.generateRandomList(9);
+        List<Double> upper = Utils.generateRandomList(MATRIX_SIZE - 1);
+        List<Double> central = Utils.generateRandomList(MATRIX_SIZE);
+        List<Double> lower = Utils.generateRandomList(MATRIX_SIZE - 1);
+        List<Double> constant = Utils.generateRandomList(MATRIX_SIZE);
 
-        ArrayList<Double> result = solver.solve(upper, central, lower, constant);
-
-        System.out.println(result);
-        System.out.println(Utils.multiplyTriDiagonal(upper, central, lower, result));
-        System.out.println(constant);
+        PerformanceTester.printTime(() -> thomasSystemSolver.solve(upper, central, lower, constant));
+        PerformanceTester.printTime(() -> parallelThomasSystemSolver.solve(upper, central, lower, constant));
     }
 }
