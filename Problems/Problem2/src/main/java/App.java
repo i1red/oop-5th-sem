@@ -4,12 +4,12 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        AbstractTriDiagonalSystemSolver solver = new ThomasSystemSolver();
+        AbstractTriDiagonalSystemSolver solver = new ParallelThomasSystemSolver();
 
-        List<Double> upper = Arrays.asList(1., 1., -1.);
-        List<Double> central = Arrays.asList(10., 9., 4., 8.);
-        List<Double> lower = Arrays.asList(-2., 0.1, -1.);
-        List<Double> constant = Arrays.asList(5., -1., -5., 40.);
+        List<Double> upper = Utils.generateRandomList(8);
+        List<Double> central = Utils.generateRandomList(9);
+        List<Double> lower = Utils.generateRandomList(8);
+        List<Double> constant = Utils.generateRandomList(9);
 
         ArrayList<Double> result = solver.solve(upper, central, lower, constant);
 

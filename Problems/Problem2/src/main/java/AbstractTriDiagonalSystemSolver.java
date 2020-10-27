@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractTriDiagonalSystemSolver {
-    protected abstract ArrayList<Double> noCheckSolve(List<Double> upperDiagonal, List<Double> centralDiagonal,
-                                                      List<Double> lowerDiagonal, List<Double> constantTerms);
+    protected abstract Double[] noCheckSolveArrays(Double[] upperDiagonal, Double[] centralDiagonal,
+                                        Double[] lowerDiagonal, Double[] constantTerms);
 
     public ArrayList<Double> solve(List<Double> upperDiagonal, List<Double> centralDiagonal,
                                    List<Double> lowerDiagonal, List<Double> constantTerms) throws IllegalArgumentException {
@@ -16,6 +17,7 @@ public abstract class AbstractTriDiagonalSystemSolver {
             throw new IllegalArgumentException();
         }
 
-        return this.noCheckSolve(upperDiagonal, centralDiagonal, lowerDiagonal, constantTerms);
+        return new ArrayList<>(Arrays.asList(this.noCheckSolveArrays(upperDiagonal.toArray(Double[]::new),
+                centralDiagonal.toArray(Double[]::new), lowerDiagonal.toArray(Double[]::new), constantTerms.toArray(Double[]::new))));
     }
 }

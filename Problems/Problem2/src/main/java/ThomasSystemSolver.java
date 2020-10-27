@@ -1,12 +1,7 @@
-import javax.print.attribute.DocAttributeSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class ThomasSystemSolver extends AbstractTriDiagonalSystemSolver {
-    private Double[] noCheckSolveArrays(Double[] upperDiagonal, Double[] centralDiagonal,
+    @Override
+    protected Double[] noCheckSolveArrays(Double[] upperDiagonal, Double[] centralDiagonal,
                                              Double[] lowerDiagonal, Double[] constantTerms) {
-
         var modifiedUpperDiagonal = new Double[upperDiagonal.length];
         var modifiedConstantTerms = new Double[constantTerms.length];
 
@@ -32,12 +27,5 @@ public class ThomasSystemSolver extends AbstractTriDiagonalSystemSolver {
             result[i] = modifiedConstantTerms[i] - modifiedUpperDiagonal[i] * result[i + 1];
         }
         return result;
-    }
-
-    @Override
-    protected ArrayList<Double> noCheckSolve(List<Double> upperDiagonal, List<Double> centralDiagonal,
-                                             List<Double> lowerDiagonal, List<Double> constantTerms) {
-        return new ArrayList<>(Arrays.asList(this.noCheckSolveArrays(upperDiagonal.toArray(Double[]::new),
-                centralDiagonal.toArray(Double[]::new), lowerDiagonal.toArray(Double[]::new), constantTerms.toArray(Double[]::new))));
     }
 }

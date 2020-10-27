@@ -18,7 +18,7 @@ public class AbstractTriDiagonalSystemSolverTest {
 
     @Parameters
     public static List<AbstractTriDiagonalSystemSolver> createSolvers() {
-        return Arrays.asList(new ThomasSystemSolver());
+        return Arrays.asList(new ThomasSystemSolver(), new ParallelThomasSystemSolver());
     }
 
     public AbstractTriDiagonalSystemSolverTest(AbstractTriDiagonalSystemSolver solver) {
@@ -27,15 +27,16 @@ public class AbstractTriDiagonalSystemSolverTest {
 
     @Test
     public void solve() {
+        List<Double> expectedResult = Utils.generateRandomList(MATRIX_SIZE);
+
         List<Double> upperDiagonal = Utils.generateRandomList(MATRIX_SIZE - 1);
         List<Double> centralDiagonal = Utils.generateRandomList(MATRIX_SIZE);
         List<Double> lowerDiagonal = Utils.generateRandomList(MATRIX_SIZE - 1);
-        List<Double> expectedTerms = Utils.generateRandomList(MATRIX_SIZE);
+        ArrayList<Double> constantTerms = Utils.multiplyTriDiagonal(upperDiagonal, centralDiagonal, lowerDiagonal, expectedResult);
 
-        ArrayList<Double> result = solver.solve(upperDiagonal, centralDiagonal, lowerDiagonal, expectedTerms);
-        ArrayList<Double> actualTerms = Utils.multiplyTriDiagonal(upperDiagonal, centralDiagonal, lowerDiagonal, result);
+        ArrayList<Double> actualResult = solver.solve(upperDiagonal, centralDiagonal, lowerDiagonal, constantTerms);
 
-        Assert.assertArrayEquals(expectedTerms.stream().mapToDouble(Double::doubleValue).toArray(),
-                actualTerms.stream().mapToDouble(Double::doubleValue).toArray(), DELTA);
+        Assert.assertArrayEquals(expectedResult.stream().mapToDouble(Double::doubleValue).toArray(),
+                actualResult.stream().mapToDouble(Double::doubleValue).toArray(), DELTA);
     }
 }
