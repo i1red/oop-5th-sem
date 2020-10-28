@@ -14,6 +14,10 @@ public class ParallelThomasSystemSolver extends AbstractTriDiagonalSystemSolver 
     CyclicBarrier barrier;
     int middle;
 
+    public ParallelThomasSystemSolver() {
+        this.barrier = new CyclicBarrier(2);
+    }
+
     @Override
     protected Double[] noCheckSolveArrays(Double[] upperDiagonal, Double[] centralDiagonal,
                                           Double[] lowerDiagonal, Double[] constantTerms) {
@@ -45,7 +49,6 @@ public class ParallelThomasSystemSolver extends AbstractTriDiagonalSystemSolver 
         this.modifiedConstantTermsTop = new Double[constantTerms.length];
         this.modifiedConstantTermsBottom = new Double[constantTerms.length];
         this.result = new Double[constantTerms.length];
-        this.barrier = new CyclicBarrier(2);
         this.middle = this.centralDiagonal.length / 2;
     }
 
