@@ -10,7 +10,9 @@ public class App {
         List<Double> upper = Utils.generateRandomList(MATRIX_SIZE - 1);
         List<Double> central = Utils.generateRandomList(MATRIX_SIZE);
         List<Double> lower = Utils.generateRandomList(MATRIX_SIZE - 1);
-        List<Double> constant = Utils.generateRandomList(MATRIX_SIZE);
+
+        List<Double> expectedResult = Utils.generateRandomList(MATRIX_SIZE);
+        List<Double> constant = Utils.multiplyTriDiagonal(upper, central, lower, expectedResult);
 
         PerformanceTester.printTime(() -> thomasSystemSolver.solve(upper, central, lower, constant));
         PerformanceTester.printTime(() -> parallelThomasSystemSolver.solve(upper, central, lower, constant));
