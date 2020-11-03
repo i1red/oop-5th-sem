@@ -1,8 +1,7 @@
 import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
 
 public class App {
-    static private final CyclicBarrier cyclicBarrier = new CyclicBarrier(3,
+    static private final CustomCyclicBarrier cyclicBarrier = new CustomCyclicBarrier(3,
             () -> System.out.println("Barrier reached"));
 
     private static void createAndStartThreadWithWaitTime(long timeOutMillis) {
