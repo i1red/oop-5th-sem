@@ -15,7 +15,7 @@ public class ThreadPool implements Executor, AutoCloseable {
     private void startThreads(int threadCount) {
         for (int i = 0; i < threadCount; i++) {
             var thread = new Thread(() -> {
-                while (this.isClosed || this.tasksCount.get() > 0) {
+                while (!this.isClosed || this.tasksCount.get() > 0) {
                     Runnable nextTask = this.tasksQueue.poll();
 
                     if (nextTask != null) {
@@ -34,14 +34,14 @@ public class ThreadPool implements Executor, AutoCloseable {
         this.tasksQueue = new ConcurrentLinkedQueue<>();
         this.tasksCount = new AtomicInteger(0);
         this.threads = new ArrayList<>(threadCount);
-        this.isClosed = true;
+        this.isClosed = false;
 
         this.startThreads(threadCount);
     }
 
     @Override
     public void execute(Runnable command) {
-        if (this.isClosed) {
+        if (!this.isClosed) {
             this.tasksCount.incrementAndGet();
             this.tasksQueue.offer(command);
         }
@@ -49,7 +49,7 @@ public class ThreadPool implements Executor, AutoCloseable {
 
     @Override
     public void close() throws InterruptedException {
-        this.isClosed = false;
+        this.isClosed = true;
 
         for (Thread thread: threads) {
             thread.join();
