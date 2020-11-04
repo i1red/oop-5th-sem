@@ -1,6 +1,6 @@
 public class App {
-    private static final int THREADS_COUNT = 10;
-    private static final int TASKS_COUNT = 12;
+    private static final int THREADS_COUNT = 5;
+    private static final int TASKS_COUNT = 4;
     private static final int TASK_TIME = 1500;
 
     public static void main(String[] args) {
