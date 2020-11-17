@@ -1,4 +1,7 @@
-import javax.xml.parsers.ParserConfigurationException;
+import device.Device;
+import device.parser.DeviceDOMParser;
+import device.parser.DeviceParser;
+
 import java.util.List;
 
 public class App {
@@ -12,7 +15,7 @@ public class App {
                 System.out.println();
                 System.out.println();
             }
-        } catch (FailedToParseException | ParserConfigurationException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

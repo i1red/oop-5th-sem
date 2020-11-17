@@ -1,3 +1,5 @@
+package device;
+
 public class Device {
     private final int id;
     private final String countryOfOrigin;

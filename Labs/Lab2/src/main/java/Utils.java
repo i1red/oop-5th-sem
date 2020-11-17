@@ -1,3 +1,6 @@
+import device.Device;
+import device.DeviceDetails;
+
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -15,6 +18,7 @@ public class Utils {
         System.out.printf("\t%-20s: %s\n", "is peripheral", deviceDetails.isPeripheral() ? "yes" : "no");
         System.out.printf("\t%-20s: %d\n", "energy consumption", deviceDetails.getEnergyConsumption());
         System.out.printf("\t%-20s: %s\n", "has cooler", deviceDetails.hasCooler() ? "yes" : "no");
+        System.out.printf("\t%-20s: %s\n", "device family", deviceDetails.getDeviceFamily());
         System.out.printf("\t%-20s: %s\n", "ports",
                 deviceDetails.getPorts().stream().map(Enum::toString).collect(Collectors.joining(", ")));
     }

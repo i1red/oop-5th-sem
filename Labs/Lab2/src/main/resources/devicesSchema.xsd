@@ -1,4 +1,17 @@
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="deviceFamilyEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IO"/>
+      <xs:enumeration value="HARDWARE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="portEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HDMI"/>
+      <xs:enumeration value="DISPLAY_PORT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:element name="devices">
     <xs:complexType>
       <xs:sequence>
@@ -7,18 +20,18 @@
             <xs:sequence>
               <xs:element type="xs:string" name="name"/>
               <xs:element type="xs:string" name="countryOfOrigin"/>
-              <xs:element type="xs:short" name="price"/>
+              <xs:element type="xs:int" name="price"/>
               <xs:element name="deviceDetails">
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element type="xs:boolean" name="isPeripheral"/>
-                    <xs:element type="xs:byte" name="energyConsumption"/>
+                    <xs:element type="xs:int" name="energyConsumption"/>
                     <xs:element type="xs:boolean" name="hasCooler"/>
-                    <xs:element type="xs:string" name="deviceFamily"/>
+                    <xs:element type="deviceFamilyEnum" name="deviceFamily"/>
                     <xs:element name="ports">
                       <xs:complexType mixed="true">
                         <xs:sequence>
-                          <xs:element type="xs:string" name="port" maxOccurs="unbounded" minOccurs="0"/>
+                          <xs:element type="portEnum" name="port" maxOccurs="unbounded" minOccurs="0"/>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -27,7 +40,7 @@
               </xs:element>
               <xs:element type="xs:boolean" name="isCritical"/>
             </xs:sequence>
-            <xs:attribute type="xs:byte" name="id" use="optional"/>
+            <xs:attribute type="xs:int" name="id" use="required"/>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

@@ -1,38 +1,65 @@
+package device.parser;
+
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 
+import device.Device;
+import device.DeviceDetails;
+import device.DeviceFamily;
+import device.Port;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class DeviceDOMParser implements DeviceParser {
     private final DocumentBuilder documentBuilder;
+    private final Validator validator;
 
-    public DeviceDOMParser() throws ParserConfigurationException {
+    public DeviceDOMParser() throws ParserCreationException {
         this(null);
     }
-    public DeviceDOMParser(String validationSchemaFilepath) throws ParserConfigurationException {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 
-        if (validationSchemaFilepath != null) {
-            documentBuilderFactory.setValidating(true);
-            documentBuilderFactory.setAttribute(
-                    "http://java.sun.com/xml/jaxp/properties/schemaLanguage",
-                    "http://www.w3.org/2001/XMLSchema"
-            );
-            documentBuilderFactory.setAttribute(
-                    "http://java.sun.com/xml/jaxp/properties/schemaSource",
-                    new File(validationSchemaFilepath)
-            );
+    public DeviceDOMParser(String validationSchemaFilepath) throws ParserCreationException {
+        try {
+            this.validator = validationSchemaFilepath != null ?
+                    SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
+                            .newSchema(new File(validationSchemaFilepath)).newValidator() : null;
+
+            this.documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         }
+        catch (Exception e) {
+            throw new ParserCreationException(e);
+        }
+    }
 
-        this.documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    @Override
+    public ArrayList<Device> parseDevices(String filepath) throws DocumentParsingException {
+        try {
+            Document document = documentBuilder.parse(new File(filepath));
+            document.getDocumentElement().normalize();
+
+            if (this.validator != null) {
+                this.validator.validate(new DOMSource(document));
+            }
+
+            var devices = new ArrayList<Device>();
+            NodeList deviceNodes = document.getElementsByTagName("device");
+
+            for (int i = 0; i < deviceNodes.getLength(); ++i) {
+                devices.add(this.getDeviceFromElement((Element) deviceNodes.item(i)));
+            }
+
+            return devices;
+        } catch (Exception e) {
+            throw new DocumentParsingException(e);
+        }
     }
 
     private DeviceDetails getDeviceDetailsFromElement(Element deviceDetailsElement) {
@@ -46,6 +73,9 @@ public class DeviceDOMParser implements DeviceParser {
                 deviceDetailsElement.getElementsByTagName("hasCooler").item(0).getTextContent()
         );
 
+        DeviceFamily deviceFamily = DeviceFamily.valueOf(
+                deviceDetailsElement.getElementsByTagName("deviceFamily").item(0).getTextContent()
+        );
 
         var ports = new ArrayList<Port>();
         NodeList portNodes = deviceDetailsElement.getElementsByTagName("port");
@@ -54,7 +84,7 @@ public class DeviceDOMParser implements DeviceParser {
             ports.add(Port.valueOf(portNodes.item(i).getTextContent()));
         }
 
-        return new DeviceDetails(isPeripheral, energyConsumption, hasCooler, ports);
+        return new DeviceDetails(isPeripheral, energyConsumption, hasCooler, deviceFamily, ports);
     }
 
     private Device getDeviceFromElement(Element deviceElement) {
@@ -75,24 +105,5 @@ public class DeviceDOMParser implements DeviceParser {
         );
 
         return new Device(id, countryOfOrigin, price, deviceDetails, isCritical);
-    }
-
-    @Override
-    public ArrayList<Device> parseDevices(String filepath) throws FailedToParseException {
-        try {
-            Document document = documentBuilder.parse(new File(filepath));
-            document.getDocumentElement().normalize();
-
-            var devices = new ArrayList<Device>();
-            NodeList deviceNodes = document.getElementsByTagName("device");
-
-            for (int i = 0; i < deviceNodes.getLength(); ++i) {
-                devices.add(this.getDeviceFromElement((Element) deviceNodes.item(i)));
-            }
-
-            return devices;
-        } catch (Exception e) {
-            throw new FailedToParseException(e);
-        }
     }
 }
