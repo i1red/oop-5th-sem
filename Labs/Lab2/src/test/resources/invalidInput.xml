@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devices>
+    <device id="0">
+        <name>name</name>
+        <countryOfOrigin>countryOfOrigin</countryOfOrigin>
+        <price>four thousand</price>
+        <deviceDetails>
+            <isPeripheral>no</isPeripheral>
+            <energyConsumption>30</energyConsumption>
+            <hasCooler>false</hasCooler>
+            <deviceFamily>Device family</deviceFamily>
+        </deviceDetails>
+        <isCritical>yes</isCritical>
+    </device>
+</devices>

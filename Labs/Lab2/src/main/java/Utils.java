@@ -7,6 +7,7 @@ public class Utils {
     public static void printDevice(Device device) {
         System.out.printf("DEVICE (ID=%d):\n\n", device.getId());
 
+        System.out.printf("\t%-20s: %s\n", "name", device.getName());
         System.out.printf("\t%-20s: %s\n", "country of origin", device.getCountryOfOrigin());
         System.out.printf("\t%-20s: %d\n", "price", device.getPrice());
         System.out.printf("\t%-20s: %s\n", "is critical", device.isCritical() ? "yes" : "no");

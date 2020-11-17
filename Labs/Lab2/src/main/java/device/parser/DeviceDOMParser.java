@@ -90,6 +90,8 @@ public class DeviceDOMParser implements DeviceParser {
     private Device getDeviceFromElement(Element deviceElement) {
         int id = Integer.parseInt(deviceElement.getAttribute("id"));
 
+        String name = deviceElement.getElementsByTagName("name").item(0).getTextContent();
+
         String countryOfOrigin = deviceElement.getElementsByTagName("countryOfOrigin").item(0).getTextContent();
 
         int price = Integer.parseInt(
@@ -104,6 +106,6 @@ public class DeviceDOMParser implements DeviceParser {
                 deviceElement.getElementsByTagName("isCritical").item(0).getTextContent()
         );
 
-        return new Device(id, countryOfOrigin, price, deviceDetails, isCritical);
+        return new Device(id, name, countryOfOrigin, price, deviceDetails, isCritical);
     }
 }

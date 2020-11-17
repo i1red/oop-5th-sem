@@ -2,14 +2,16 @@ package device;
 
 public class Device {
     private final int id;
+    private final String name;
     private final String countryOfOrigin;
     private final int price;
     private final DeviceDetails deviceDetails;
     private final boolean isCritical;
 
-
-    public Device(int id, String countryOfOrigin, int price, DeviceDetails deviceDetails, boolean isCritical) {
+    public Device(int id, String name, String countryOfOrigin, int price,
+                  DeviceDetails deviceDetails, boolean isCritical) {
         this.id = id;
+        this.name = name;
         this.countryOfOrigin = countryOfOrigin;
         this.price = price;
         this.deviceDetails = deviceDetails;
@@ -18,6 +20,10 @@ public class Device {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getCountryOfOrigin() {
@@ -35,4 +41,5 @@ public class Device {
     public boolean isCritical() {
         return isCritical;
     }
+
 }
