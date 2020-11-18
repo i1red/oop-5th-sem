@@ -25,20 +25,21 @@ public class CustomCyclicBarrier {
 
         --this.numberWaiting;
 
-        if (this.numberWaiting > 0) {
+        while (this.numberWaiting > 0 && this.numberWaiting != this.parties) {
             try {
                 this.wait();
             } catch (InterruptedException e) {
                 this.isBroken = true;
                 throw e;
             }
-        } else {
-            this.reset();
-            notifyAll();
-            if (this.barrierEvent != null) {
-                this.barrierEvent.run();
-            }
         }
+
+        this.reset();
+        notifyAll();
+        if (this.barrierEvent != null) {
+            this.barrierEvent.run();
+        }
+
     }
 
     public void reset() {

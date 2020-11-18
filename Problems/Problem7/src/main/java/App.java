@@ -11,9 +11,15 @@ public class App {
                 try {
                     System.out.println("Thread start");
                     synchronized (this) {
-                        this.wait(timeOutMillis);
+                        this.wait(timeOutMillis / 2);
                     }
-                    System.out.println("Thread waiting time over");
+                    System.out.println("Half of waiting time is over");
+                    cyclicBarrier.await();
+
+                    synchronized (this) {
+                        this.wait(timeOutMillis / 2);
+                    }
+                    System.out.println("Waiting time is over");
                     cyclicBarrier.await();
                 } catch (InterruptedException | BrokenBarrierException e) {
                     e.printStackTrace();
