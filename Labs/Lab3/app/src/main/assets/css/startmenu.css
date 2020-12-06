@@ -1,0 +1,14 @@
+.btn {
+    width: min(90vw, 180vh);
+    margin: 36vh auto;
+    padding: min(2vw, 4vh);
+    border: 2px solid #000;
+    background-color: #aa0000;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    cursor: pointer;
+}

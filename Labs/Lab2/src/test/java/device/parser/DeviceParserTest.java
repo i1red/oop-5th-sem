@@ -47,5 +47,6 @@ public class DeviceParserTest {
     @Test(expected = DocumentParsingException.class)
     public void parseInvalidXml() throws DocumentParsingException {
         this.deviceParser.parseDevices("src/test/resources/invalidInput.xml");
+        //this.deviceParser.parseDevices("src/test/resources/devices.xml");
     }
 }

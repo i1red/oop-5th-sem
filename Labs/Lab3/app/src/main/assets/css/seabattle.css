@@ -1,0 +1,72 @@
+.tables {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.table {
+    --border: 1px solid #000;
+
+    background-color: #fff;
+    width: min(37vw, 80vh);
+    height: min(37vw, 80vh);
+    border: var(--border);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.table div {
+    border: var(--border);
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.gray {
+    --border: 1px solid #aaa;
+
+    background-color: #aaaaaaaa;
+    border: var(--border);
+}
+
+.gray div {
+    border: var(--border);
+}
+
+
+.btn {
+    width: min(38vw, 75vh);
+    margin: min(1vw, 2vh) auto;
+    padding: min(1vw, 2vh);
+    border: 1px solid #000;
+    background-color: #0000aa;
+    color: #fff;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.deck {
+    background-color: #03a803;
+}
+
+.damagedDeck {
+    background-color: #4b0000;
+    pointer-events: none;
+    transition: 0.1s;
+} 
+
+.water {
+    background-color: #8181ee91;
+    pointer-events: none;
+    transition: 0.1s;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}

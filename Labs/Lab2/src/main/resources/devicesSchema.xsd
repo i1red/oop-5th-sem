@@ -17,13 +17,13 @@
       <xs:sequence>
         <xs:element name="device" maxOccurs="unbounded" minOccurs="0">
           <xs:complexType>
-            <xs:sequence>
+            <xs:all minOccurs="1" maxOccurs="1">
               <xs:element type="xs:string" name="name"/>
               <xs:element type="xs:string" name="countryOfOrigin"/>
               <xs:element type="xs:int" name="price"/>
               <xs:element name="deviceDetails">
                 <xs:complexType>
-                  <xs:sequence>
+                  <xs:all>
                     <xs:element type="xs:boolean" name="isPeripheral"/>
                     <xs:element type="xs:int" name="energyConsumption"/>
                     <xs:element type="xs:boolean" name="hasCooler"/>
@@ -35,11 +35,11 @@
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                  </xs:sequence>
+                  </xs:all>
                 </xs:complexType>
               </xs:element>
               <xs:element type="xs:boolean" name="isCritical"/>
-            </xs:sequence>
+            </xs:all>
             <xs:attribute type="xs:int" name="id" use="required"/>
           </xs:complexType>
         </xs:element>

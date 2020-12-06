@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Sea Battle</string>
     <string name="column_1">Column 1</string>
+    <string name="button_text">
+        R
+        e
+        s
+        t
+        a
+        r
+        t
+    </string>
 </resources>

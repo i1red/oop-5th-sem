@@ -1,5 +1,3 @@
-import java.util.concurrent.Phaser;
-
 public class App {
     public static Runnable createPhasedTask(String taskName, CustomPhaser phaser, int waitingTime, int phaseCount) {
         return () -> {
@@ -23,7 +21,7 @@ public class App {
 
     public static void main(String[] args) {
         var phaser = new CustomPhaser();
-        new Thread(createPhasedTask("Task #1", phaser, 150, 5)).start();
+        new Thread(createPhasedTask("Task #1", phaser, 150, 4)).start();
         new Thread(createPhasedTask("Task #2", phaser, 250, 3)).start();
 
         phaser.register();
@@ -35,6 +33,11 @@ public class App {
         System.out.printf("Phase #%d is finished\n", phaser.getPhase() - 1);
 
         phaser.arriveAndAwaitAdvance();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.printf("Phase #%d is finished\n", phaser.getPhase() - 1);
 
         phaser.arriveAndDeregister();

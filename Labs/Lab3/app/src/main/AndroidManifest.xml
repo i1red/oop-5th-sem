@@ -11,7 +11,8 @@
         android:theme="@style/Theme.SeaBattle">
         <activity
             android:name=".MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
